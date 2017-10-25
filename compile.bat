@@ -1,2 +1,3 @@
 javac LevenshteinEditDistance.java
 java LevenshteinEditDistance
+pause

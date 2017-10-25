@@ -1,13 +1,8 @@
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;  
 
-/**
- * This class implements the Levenshtein edit distance algorthm.
- * 
- * @author Rodion "rodde" Efremov
- * @version 1.6 (Apr 20, 2016)
- */
 public class LevenshteinEditDistance {
 
     /**
@@ -89,7 +84,9 @@ public class LevenshteinEditDistance {
 
         for (int j = 1; j <= n; ++j) {
             for (int i = 1; i <= m; ++i) {
-                final int delta = (s.charAt(j - 1) == z.charAt(i - 1)) ? 0 : 1;
+
+                //subtitution param
+                final int delta = (s.charAt(j - 1) == z.charAt(i - 1)) ? 0 : 2;
 
                 int tentativeDistance = d[i - 1][j] + 1;
                 EditOperation editOperation = EditOperation.INSERT;
@@ -175,9 +172,33 @@ public class LevenshteinEditDistance {
     }
 
     public static void main(String[] args) {
-        LevenshteinEditDistanceResult result = compute("INTENTION", "EXECUTION");
-        System.out.println("Distance: " + result.getDistance());
-        System.out.println("Edit sequence: " + result.getEditSequence());
+        String string1 = new String();
+        String string2 = new String();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("+-----------------+");
+        System.out.println("|      Input      |");
+        System.out.println("+-----------------+\n");
+
+        System.out.println("Input Word 1: ");     
+        try{
+            string1 = scanner.next();
+        }catch (Exception e) {
+            
+        }
+
+        System.out.println("Input Word 2: ");
+        try{
+            string2 = scanner.next();
+        }catch (Exception e) {
+            
+        }        
+
+        System.out.println("\n+-----------------+");
+        System.out.println("|      Output     |");
+        System.out.println("+-----------------+\n");
+        LevenshteinEditDistanceResult result = compute(string1, string2);
+        System.out.println("Distance: " + result.getDistance() + "\n");
         System.out.println("Alignment:");
         System.out.println(result.getTopAlignmentRow());
         System.out.println(result.getBottomAlignmentRow());

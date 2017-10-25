@@ -1,0 +1,2 @@
+javac LevenshteinEditDistance.java
+java LevenshteinEditDistance
